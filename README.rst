@@ -201,7 +201,7 @@ Changelog
 Credits
 -------
 
-This plugin is a fork of the poweradmin for `BF3 plugin <https://github.com/thomasleveil/b3-plugin-poweradminbf3>`_. Credits go out to the developers of that.
+This plugin is a fork of the `poweradmin for BF3 plugin <https://github.com/thomasleveil/b3-plugin-poweradminbf3>`_. Credits go out to the developers of that.
 
 
 
