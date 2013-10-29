@@ -198,14 +198,21 @@ Changelog
 
 
 
+Credits
+-------
+
+This plugin is a fork of the poweradmin for `BF3 plugin <https://github.com/thomasleveil/b3-plugin-poweradminbf3>`_. Credits go out to the developers of that.
+
+
+
 Contrib
 -------
 
-- *features* can be discussed on the `B3 forums <http://forum.bigbrotherbot.net/plugins-by-courgette/poweradmin-bf3/>`_
-- documented and reproducible *bugs* can be reported on the `issue tracker <https://github.com/courgette/b3-plugin-poweradminbf3/issues>`_
+- *features* can be discussed on the `B3 forums <http://forum.bigbrotherbot.net/plugins-by-courgette/poweradmin-bf4/>`_
+- documented and reproducible *bugs* can be reported on the `issue tracker <https://github.com/maikelwever/b3-plugin-poweradminbf4/issues>`_
 - *patches* are welcome. Send me a `pull request <http://help.github.com/send-pull-requests/>`_. It is best if your patch provides tests.
 
-.. image:: https://secure.travis-ci.org/thomasleveil/b3-plugin-poweradminbf3.png?branch=master
+.. image:: https://secure.travis-ci.org/maikelwever/b3-plugin-poweradminbf4.png?branch=master
    :alt: Build Status
-   :target: http://travis-ci.org/thomasleveil/b3-plugin-poweradminbf3
+   :target: http://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
 
