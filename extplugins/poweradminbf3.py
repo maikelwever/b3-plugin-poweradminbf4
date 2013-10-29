@@ -73,7 +73,8 @@ from b3.plugin import Plugin
 from ConfigParser import NoOptionError
 from b3.parsers.frostbite2.protocol import CommandFailedError
 from b3.parsers.frostbite2.util import MapListBlock, PlayerInfoBlock
-from b3.parsers.bf3 import GAME_MODES_NAMES, __version__ as bf3_version, GUNMASTER_WEAPONS_PRESET_BY_INDEX, GUNMASTER_WEAPONS_PRESET_BY_NAME
+from b3.parsers.bf4 import GAME_MODES_NAMES, GUNMASTER_WEAPONS_PRESET_BY_INDEX, GUNMASTER_WEAPONS_PRESET_BY_NAME
+from b3.parsers.bf3 import __version__ as bf3_version
 from b3.update import B3version
 import b3.cron
 
