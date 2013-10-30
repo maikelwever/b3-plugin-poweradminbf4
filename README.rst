@@ -3,7 +3,10 @@ Power Admin Battlefield 4 for Big Brother Bot
 
 http://www.bigbrotherbot.net
 
-.. image:: https://travis-ci.org/maikelwever/b3-plugin-poweradminbf4.png?branch=master   :target: https://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
+
+.. image:: https://secure.travis-ci.org/maikelwever/b3-plugin-poweradminbf4.png?branch=master
+   :alt: Build Status
+   :target: http://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
 
 
 Notice
