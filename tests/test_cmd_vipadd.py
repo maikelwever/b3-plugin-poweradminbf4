@@ -3,18 +3,18 @@
 from mockito import when, verify
 from b3.config import CfgConfigParser
 from b3.parsers.frostbite2.protocol import CommandFailedError
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_cmd_vipadd(Bf3TestCase):
+class Test_cmd_vipadd(Bf4TestCase):
     def setUp(self):
         super(Test_cmd_vipadd, self).setUp()
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 vipadd: 0
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

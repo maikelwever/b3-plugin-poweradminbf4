@@ -2,17 +2,17 @@
 import logging
 from mock import Mock, call
 
-from poweradminbf3 import Poweradminbf3Plugin, __file__ as poweradminbf3_file
+from poweradminbf4 import Poweradminbf4Plugin
 from b3.config import CfgConfigParser
 
-from tests import Bf3TestCase
+from tests import Bf4TestCase
 
-class Test_conf(Bf3TestCase):
+class Test_conf(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         logger = logging.getLogger('output')
         logger.setLevel(logging.INFO)
 

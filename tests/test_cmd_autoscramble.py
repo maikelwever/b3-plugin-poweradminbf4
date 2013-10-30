@@ -2,20 +2,20 @@
 
 from mock import Mock
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_cmd_autoscramble(Bf3TestCase):
+class Test_cmd_autoscramble(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""
 [commands]
 autoscramble: mod
 """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
         self.p._scrambler = Mock()

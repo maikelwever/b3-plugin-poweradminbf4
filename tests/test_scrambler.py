@@ -3,18 +3,18 @@ import logging
 from mock import Mock, call
 from mockito import when
 
-from poweradminbf3 import Poweradminbf3Plugin, __file__ as poweradminbf3_file
+from poweradminbf4 import Poweradminbf4Plugin
 from b3.config import CfgConfigParser
-from tests import Bf3TestCase, logging_disabled
+from tests import Bf4TestCase, logging_disabled
 
 
-class Test_events(Bf3TestCase):
+class Test_events(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         with logging_disabled():
-            self.p = Poweradminbf3Plugin(self.console, self.conf)
+            self.p = Poweradminbf4Plugin(self.console, self.conf)
         when(self.console).write(('vars.roundStartPlayerCount',)).thenReturn(['0'])
         self.scrambleTeams_mock = self.p._scrambler.scrambleTeams = Mock(name="scrambleTeams", wraps=self.p._scrambler.scrambleTeams)
         self.scrambleTeams_mock.reset_mock()

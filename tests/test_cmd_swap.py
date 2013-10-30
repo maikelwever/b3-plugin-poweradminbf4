@@ -5,11 +5,11 @@ from mockito import verify, when
 import b3
 from b3.config import CfgConfigParser
 from b3.parsers.frostbite2.protocol import CommandFailedError
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_cmd_swap(Bf3TestCase):
+class Test_cmd_swap(Bf4TestCase):
 
     def setUp(self):
         super(Test_cmd_swap, self).setUp()
@@ -17,7 +17,7 @@ class Test_cmd_swap(Bf3TestCase):
         self.conf.loadFromString("""[commands]
 swap: 20
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 
@@ -111,7 +111,7 @@ swap: 20
         self.assertEqual(['swapped player joe with simon'], self.superadmin.message_history)
 
 
-class Test_issue_14(Bf3TestCase):
+class Test_issue_14(Bf4TestCase):
 
     def setUp(self):
         super(Test_issue_14, self).setUp()
@@ -122,7 +122,7 @@ swap: 0
 [preferences]
 no_level_check_level: 20
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

@@ -5,7 +5,7 @@ if sys.version_info[:2] < (2, 7):
 else:
     import unittest
 from mock import Mock # http://www.voidspace.org.uk/python/mock/mock.html
-from poweradminbf3 import Poweradminbf3Plugin
+from poweradminbf4 import Poweradminbf4Plugin
 
 
 
@@ -14,7 +14,7 @@ class Test_getConfigSoundingLike(unittest.TestCase):
     def setUp(self):
         self.available_names = ["hardcore", "normal", "infantry", "tdm", "conquest", "rush", "quickmatch", "hardcore-tdm", "hardcore-conquest"]
         self.console = Mock()
-        self.p = Poweradminbf3Plugin(self.console)
+        self.p = Poweradminbf4Plugin(self.console)
         self.p._list_available_server_config_files = lambda: self.available_names
 
     def test_no_available_config(self):

@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 from mock import patch
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_config(Bf3TestCase):
+class Test_config(Bf4TestCase):
 
     def test_no_preference(self):
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[foo]""")
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(10, self.p._yell_duration)
 
@@ -20,7 +20,7 @@ class Test_config(Bf3TestCase):
 [preferences]
 yell_duration: 1
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(1.0, self.p._yell_duration)
 
@@ -30,7 +30,7 @@ yell_duration: 1
 [preferences]
 yell_duration: 1.3
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(10, self.p._yell_duration)
 
@@ -40,7 +40,7 @@ yell_duration: 1.3
 [preferences]
 yell_duration: 0.3
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(10, self.p._yell_duration)
 
@@ -50,7 +50,7 @@ yell_duration: 0.3
 [preferences]
 yell_duration: foo
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(10, self.p._yell_duration)
 
@@ -60,16 +60,16 @@ yell_duration: foo
 [preferences]
 yell_duration:
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(10, self.p._yell_duration)
 
 
 
-class Test_cmd_yell(Bf3TestCase):
+class Test_cmd_yell(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 yell: 20
@@ -77,7 +77,7 @@ yell: 20
 [preferences]
 yell_duration: 2
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 
@@ -97,10 +97,10 @@ yell_duration: 2
 
 
 
-class Test_cmd_yellteam(Bf3TestCase):
+class Test_cmd_yellteam(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 yellteam: 20
@@ -108,7 +108,7 @@ yellteam: 20
 [preferences]
 yell_duration: 2
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 
@@ -129,10 +129,10 @@ yell_duration: 2
 
 
 
-class Test_cmd_yellsquad(Bf3TestCase):
+class Test_cmd_yellsquad(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 yellsquad: 20
@@ -140,7 +140,7 @@ yellsquad: 20
 [preferences]
 yell_duration: 2
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 
@@ -161,10 +161,10 @@ yell_duration: 2
         write_mock.assert_called_once_with(('admin.yell', 'changing map soon !', '2', 'squad', '3', '4'))
 
 
-class Test_cmd_yellplayer(Bf3TestCase):
+class Test_cmd_yellplayer(Bf4TestCase):
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 yellplayer: 20
@@ -172,7 +172,7 @@ yellplayer: 20
 [preferences]
 yell_duration: 2
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

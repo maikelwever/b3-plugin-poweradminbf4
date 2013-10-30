@@ -3,16 +3,16 @@ import time
 from mock import patch, call
 from mockito import verify, when
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
 
-class Test_cmd_roundnext(Bf3TestCase):
+class Test_cmd_roundnext(Bf4TestCase):
 
     @classmethod
     def setUpClass(cls):
-        Bf3TestCase.setUpClass()
+        Bf4TestCase.setUpClass()
         cls.sleep_patcher = patch.object(time, "sleep")
         cls.sleep_patcher.start()
 
@@ -21,12 +21,12 @@ class Test_cmd_roundnext(Bf3TestCase):
         cls.sleep_patcher.stop()
 
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 roundnext: 20
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
         self.superadmin.connects('superadmin')
