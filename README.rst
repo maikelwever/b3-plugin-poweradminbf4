@@ -3,15 +3,14 @@ Power Admin Battlefield 4 for Big Brother Bot
 
 http://www.bigbrotherbot.net
 
-.. image:: https://secure.travis-ci.org/maikelwever/b3-plugin-poweradminbf4.png?branch=master
-   :alt: Build Status
-   :target: http://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
-   
-.. raw:: html
+.. image:: https://travis-ci.org/maikelwever/b3-plugin-poweradminbf4.png?branch=master   :target: https://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
 
-    <div style="background-color: yellow; color: red; padding: 20px; border: 2px solid black; margin-left:auto; margin-right: auto; width: 50%">
-        <b>Notice: </b> THIS IS CURRENTLY A WORK IN PROGRESS, I AM STILL PORTING THIS PLUGIN TO BF4.
-    </div>
+
+Notice
+------
+
+**THIS IS CURRENTLY A WORK IN PROGRESS, I AM STILL PORTING THIS PLUGIN TO BF4.**
+
 
 
 Description
