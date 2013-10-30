@@ -2,13 +2,13 @@
 import b3
 from b3.config import CfgConfigParser
 from b3.parsers.frostbite2.protocol import CommandFailedError
-from poweradminbf3 import Poweradminbf3Plugin
+from poweradminbf4 import Poweradminbf4Plugin
 from mock import call, patch, Mock
 from mockito import when, verify
-from tests import Bf3TestCase, logging_disabled
+from tests import Bf4TestCase, logging_disabled
 
 
-class Test_cmd_changeteam(Bf3TestCase):
+class Test_cmd_changeteam(Bf4TestCase):
     def setUp(self):
         super(Test_cmd_changeteam, self).setUp()
         self.conf = CfgConfigParser()
@@ -17,7 +17,7 @@ class Test_cmd_changeteam(Bf3TestCase):
 changeteam: mod
         """)
         with logging_disabled():
-            self.p = Poweradminbf3Plugin(self.console, self.conf)
+            self.p = Poweradminbf4Plugin(self.console, self.conf)
             self.p.onLoadConfig()
             self.p.onStartup()
 
@@ -32,7 +32,7 @@ changeteam: mod
         self.write_mock = self.write_patcher.start()
 
     def tearDown(self):
-        Bf3TestCase.tearDown(self)
+        Bf4TestCase.tearDown(self)
         self.write_patcher.stop()
 
     def test_frostbite_error(self):
@@ -121,7 +121,7 @@ changeteam: mod
         self.assert_moved_from_team_1_to_2_to_1()
 
     def test_RushLarge0(self):
-        # set the BF3 server
+        # set the BF4 server
         # despite showing 0 teams in the serverInfo response, this gamemode has 2 teams (id 1 and 2)
         when(self.console).write(('serverInfo',)).thenReturn(
             ['i3D.net - BigBrotherBot #3 (DE)', '0', '16', 'RushLarge0', 'MP_001', '0', '2',
@@ -184,7 +184,7 @@ changeteam: mod
             self.superadmin.message_history)
 
 
-class Test_issue_14(Bf3TestCase):
+class Test_issue_14(Bf4TestCase):
     def setUp(self):
         super(Test_issue_14, self).setUp()
         self.conf = CfgConfigParser()
@@ -194,7 +194,7 @@ changeteam: guest
 [preferences]
 no_level_check_level: 20
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

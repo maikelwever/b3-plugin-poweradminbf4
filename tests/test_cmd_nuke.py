@@ -2,17 +2,17 @@
 from mock import patch, call, Mock
 import time
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
-class Test_cmd_nuke(Bf3TestCase):
+class Test_cmd_nuke(Bf4TestCase):
     def setUp(self):
-        Bf3TestCase.setUp(self)
+        Bf4TestCase.setUp(self)
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 nuke: 20
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 
@@ -32,7 +32,7 @@ nuke: 20
 
 
     def tearDown(self):
-        Bf3TestCase.tearDown(self)
+        Bf4TestCase.tearDown(self)
         self.sleep_patcher.stop()
 
 

@@ -5,14 +5,14 @@ if sys.version_info[:2] < (2, 7):
 else:
     import unittest
 from mock import Mock # http://www.voidspace.org.uk/python/mock/mock.html
-from poweradminbf3 import Poweradminbf3Plugin
+from poweradminbf4 import Poweradminbf4Plugin
 
 
 class Test_issue_17_load_server_config(unittest.TestCase):
 
     def setUp(self):
         self.console = Mock()
-        self.p = Poweradminbf3Plugin(self.console)
+        self.p = Poweradminbf4Plugin(self.console)
 
     def test_write_cvars_no_result(self):
         self.console.write.return_value = []

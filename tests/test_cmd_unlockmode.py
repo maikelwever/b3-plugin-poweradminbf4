@@ -1,22 +1,24 @@
 # -*- encoding: utf-8 -*-
 # http://www.voidspace.org.uk/python/mock/mock.html
+import unittest
 from mock import Mock
 from mockito import when, verify
 import b3
 from b3.config import CfgConfigParser
 from b3.parsers.frostbite2.protocol import CommandFailedError
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_cmd_unlockmode(Bf3TestCase):
+@unittest.skip("skipping until we figure out is the unlockMode CVAR exists and work in BF4")
+class Test_cmd_unlockmode(Bf4TestCase):
     def setUp(self):
         super(Test_cmd_unlockmode, self).setUp()
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 unlockmode: 40
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
         when(self.console).write()

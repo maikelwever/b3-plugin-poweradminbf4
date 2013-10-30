@@ -4,18 +4,18 @@ from mock import patch
 from mockito import when, verify
 from b3.config import CfgConfigParser
 from b3.parsers.frostbite2.protocol import CommandFailedError
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 @patch.object(time, 'sleep')
-class Test_cmd_serverreboot(Bf3TestCase):
+class Test_cmd_serverreboot(Bf4TestCase):
     def setUp(self):
         super(Test_cmd_serverreboot, self).setUp()
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 serverreboot: 100
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

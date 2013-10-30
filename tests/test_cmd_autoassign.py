@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from tests import Bf3TestCase
+from tests import Bf4TestCase
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
+from poweradminbf4 import Poweradminbf4Plugin
 
-class Test_cmd_autoassign(Bf3TestCase):
+class Test_cmd_autoassign(Bf4TestCase):
 
     def setUp(self):
         super(Test_cmd_autoassign, self).setUp()
@@ -12,7 +12,7 @@ class Test_cmd_autoassign(Bf3TestCase):
 [commands]
 autoassign: mod
 """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

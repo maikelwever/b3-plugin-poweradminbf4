@@ -6,7 +6,7 @@ else:
     import unittest
 from mock import Mock # http://www.voidspace.org.uk/python/mock/mock.html
 from b3.parsers.frostbite2.protocol import CommandFailedError
-from poweradminbf3 import Poweradminbf3Plugin
+from poweradminbf4 import Poweradminbf4Plugin
 
 
 
@@ -14,7 +14,7 @@ class Test_load_server_config(unittest.TestCase):
 
     def setUp(self):
         self.console = Mock()
-        self.p = Poweradminbf3Plugin(self.console)
+        self.p = Poweradminbf4Plugin(self.console)
 
     def test_empty_file(self):
         self.p = self.p

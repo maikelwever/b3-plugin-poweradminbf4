@@ -4,12 +4,11 @@ Power Admin Battlefield 4 for Big Brother Bot
 http://www.bigbrotherbot.net
 
 .. image:: https://travis-ci.org/maikelwever/b3-plugin-poweradminbf4.png?branch=master   :target: https://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
+.. raw:: html
 
-
-Notice
-------
-
-THIS IS CURRENTLY A WORK IN PROGRESS, I AM STILL PORTING THIS PLUGIN TO BF4.
+    <div style="background-color: yellow; color: red; padding: 20px; border: 2px solid black; margin-left:auto; margin-right: auto; width: 50%">
+        <b>Notice: </b> THIS IS CURRENTLY A WORK IN PROGRESS, I AM STILL PORTING THIS PLUGIN TO BF4.
+    </div>
 
 
 Description
@@ -21,7 +20,7 @@ This plugin brings Battlefield 4 specific features to Bigbrotherbot.
 Requirements
 ------------
 
-- requires B3 v1.8.3 or later
+- requires B3 v1.10 or later
 
 
 Installation
@@ -98,7 +97,7 @@ Commands
   set the idle kicker off/on or to the number of minute you wish
 
 !serverreboot
-  restart the BF3 gameserver
+  restart the BF4 gameserver
 
 !yell <msg>
   yell a message to all players
@@ -141,8 +140,6 @@ Commands
 !vipload
   load the VIP list from the disk
 
-!gunmaster <index>
-  set weapon preset for the next Gunmaster round
 
 
 Other features
@@ -177,26 +174,14 @@ Support
 -------
 
 Support is only provided on www.bigbrotherbot.net forums on the following topic :
-http://forum.bigbrotherbot.net/plugins-by-courgette/poweradmin-bf3/
+http://forum.bigbrotherbot.net/releases/poweradminbf4/
 
 
 Changelog
 ---------
 
-1.0
-  first stable realease
-1.1
-  fixes !yell after B3 1.8.0 changes
-1.2
-  adds config option scramber\gamemodes_blacklist to have the auto scrambler ignoring some gamemodes. requires B3 1.8.2dev1+
-1.3
-  Refactors autobalance logic flow, and add setting option team_swap_threshold_prop
-1.3.1
-  Fixes issue with command !setnextmap since B3 1.8.2
-1.4
-  Adds commands !viplist, !vips, !vipadd, !vipremove, !vipclear, !vipload, !vipsave
-1.5
-  Command !setnextmap now accepts new optional parameters : <map> [, <gamemode> [, <rounds>]]
+0.1
+  non-working version - code copied over from the poweradminbf3 plugin
 
 
 
@@ -205,12 +190,15 @@ Credits
 
 This plugin is a fork of the `poweradmin for BF3 plugin <https://github.com/thomasleveil/b3-plugin-poweradminbf3>`_. Credits go out to the developers of that.
 
+Contributors to this plugin:
+  - maikelwever
+  - courgette
 
 
 Contrib
 -------
 
-- *features* can be discussed on the `B3 forums <http://forum.bigbrotherbot.net/plugins-by-courgette/poweradmin-bf4/>`_
+- *features* can be discussed on the `B3 forums <http://forum.bigbrotherbot.net/releases/poweradminbf4/>`_
 - documented and reproducible *bugs* can be reported on the `issue tracker <https://github.com/maikelwever/b3-plugin-poweradminbf4/issues>`_
 - *patches* are welcome. Send me a `pull request <http://help.github.com/send-pull-requests/>`_. It is best if your patch provides tests.
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
-# PowerAdmin BF3 Plugin for BigBrotherBot(B3) (www.bigbrotherbot.net)
-# Copyright (C) 2011 Thomas LÉVEIL (courgette@bigbrotherbot.net)
+# PowerAdmin BF4 Plugin for BigBrotherBot(B3) (www.bigbrotherbot.net)
+# Copyright (C) 2013 - B3 community developers
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,63 +20,32 @@
 #
 # CHANGELOG
 #
-# 0.1 - add command !kill
-# 0.2 - add commands !roundrestart and !roundnext
-# 0.3 - add commands !changeteam and !swap
-# 0.4 - commands !kill, !changeteam, !swap won't act on an admin of higher level
-# 0.5 - add commands !punkbuster and !setnextmap. Fix bug in 0.4
-# 0.6 - add command !loadconfig
-# 0.7 - add the swap_no_level_check config variable to allow one to !swap players without any level restriction
-# 0.8
-#   renamed 'swap_no_level_check' to 'no_level_check_level' and this option now also applies to the !changeteam command
-#   add commands !scramble, !scramblemode, !autoscramble
-# 0.8.1 - fix crash with 0.8
-# 0.8.2 - fix issue #17 with !loadconfig
-# 0.9   - add command !listconfig, !loadconfig can understand mis-spelt names and suggest config names
-# 0.10  - ported xlr8or's configmanager plugin for cod series. Automagically loads server config files based on maps/gamemodes
-# 0.11  - fix issue with configmanager examples' filenames
-# 0.12  - add command !unlockmode
-# 0.13  - fixes #22 : !swap reports everything went fine even when failing
-# 0.14  - add command !vehicles
-# 0.15  - add team balancing (82ndab-Bravo17)
-# 0.16  - add command !endround (ozon)
-# 0.16.1  - fix command !endround
-# 0.16.2 - fix !changeteam for SquadDeathMatch0
-# 0.16.3 - Only start autobalancing when teams are out of balance by team_swap_threshold or more
-# 0.17  - add command !idle (Mario)
-# 0.18  - add command !serverreboot and improve command !endround (Ozon)
-# 0.18.1 - Correct autobalance not restarting after 0.16.3 change
-# 0.19 - add commands !yell !yellplayer !yellteam !yellsquad (requires B3 1.8.1+)
-# 0.20 - add command !nuke
-# 1.0 - fixes !yell
-# 1.1 - fixes !yell after B3 1.8.0 changes
-# 1.2 - add config option scramber\gamemodes_blacklist to have the auto scrambler ignoring some gamemodes. requires B3 1.8.2dev1+
-# 1.3 - Refactor autobalance logic flow, and add setting option team_swap_threshold_prop
-# 1.3.1 - Fixes issue with command !setnextmap since B3 1.8.2
-# 1.4 - Adds commands !viplist, !vips, !vipadd, !vipremove, !vipclear, !vipload, !vipsave
-# 1.5 - Command !setnextmap now accepts new optional parameters : <map> [, <gamemode> [, <rounds>]]
-# 1.6 - add command !gunmaster
+# 0.1 - copy plugin code from poweradminbf3
 #
-__version__ = '1.6'
-__author__  = 'Courgette, 82ndab-Bravo17, ozon, Mario'
+__version__ = '0.1'
+__author__ = 'Courgette, maikelwever'  # contributors: add your name here
 
 import re
 import ConfigParser
-from b3.functions import soundex, levenshteinDistance
 import random
 import time
 import os
 import thread
+from ConfigParser import NoOptionError
+
+from b3.functions import soundex, levenshteinDistance
 import b3
 import b3.events
 from b3.plugin import Plugin
-from ConfigParser import NoOptionError
 from b3.parsers.frostbite2.protocol import CommandFailedError
 from b3.parsers.frostbite2.util import MapListBlock, PlayerInfoBlock
-from b3.parsers.bf4 import GAME_MODES_NAMES, GUNMASTER_WEAPONS_PRESET_BY_INDEX, GUNMASTER_WEAPONS_PRESET_BY_NAME
-from b3.parsers.bf3 import __version__ as bf3_version
+from b3.parsers.bf4 import GAME_MODES_NAMES
+from b3.parsers.bf4 import __version__ as bf4_version
 from b3.update import B3version
 import b3.cron
+
+
+MIN_BF4_PARSER_VERSION = "1.0.0"  # the minimum bf4.py parser version required
 
 
 class Scrambler:
@@ -334,9 +303,7 @@ class vip_commands_mixin:
         return [ x for x in names if x not in seen and not seen_add(x)]
 
 
-MIN_BF3_PARSER_VERSION = "1.8"
-
-class Poweradminbf3Plugin(Plugin, vip_commands_mixin):
+class Poweradminbf4Plugin(Plugin, vip_commands_mixin):
 
     def __init__(self, console, config=None):
         self._adminPlugin = None
@@ -391,8 +358,8 @@ class Poweradminbf3Plugin(Plugin, vip_commands_mixin):
         """\
         Initialize plugin settings
         """
-        if B3version(bf3_version) < B3version(MIN_BF3_PARSER_VERSION):
-            self.critical("The poweradminbf3 plugin requires B3 BF3 parser v%s+" % MIN_BF3_PARSER_VERSION)
+        if B3version(bf4_version) < B3version(MIN_BF4_PARSER_VERSION):
+            self.critical("The poweradminbf4 plugin requires B3 BF4 parser v%s+" % MIN_BF4_PARSER_VERSION)
             raise SystemExit(220)
 
         # get the admin plugin so we can register commands
@@ -841,7 +808,8 @@ class Poweradminbf3Plugin(Plugin, vip_commands_mixin):
             try:
                 current_mode = self.console.getCvar('unlockMode').getString()
                 self.console.game['unlockMode'] = current_mode
-            except Exception:
+            except Exception, err:
+                self.error(err)
                 current_mode = 'unknown'
             cmd.sayLoudOrPM(client=client, message="Current unlock mode is [%s]" % current_mode)
         else:
@@ -1105,35 +1073,6 @@ class Poweradminbf3Plugin(Plugin, vip_commands_mixin):
             elif clean_team_name == 'ru':
                 for player in [x for x in players if x.teamId == 2]:
                     kill(player, reason)
-
-    def cmd_gunmaster(self, data, client, cmd=None):
-        """\
-        <index> - Set Weapon Preset for the next Gunmaster round
-        """
-        # generate human readable  preset list
-        _preset_list = []
-        for i in range(len(GUNMASTER_WEAPONS_PRESET_BY_INDEX)):
-            _preset_list.append( '%d - %s' % (i, GUNMASTER_WEAPONS_PRESET_BY_INDEX[i][0]))
-        # handle command args
-        if not data:
-            _current_preset = self.console.getCvar('gunMasterWeaponsPreset').getInt()
-            client.message('Current Gunmaster Preset: %s' % _preset_list[_current_preset])
-        else:
-            if data[0].isdigit():
-                if int(data[0]) in range(len(GUNMASTER_WEAPONS_PRESET_BY_INDEX)):
-                    _new_preset = int(data[0])
-                    try:
-                        self.console.setCvar('gunMasterWeaponsPreset', int(_new_preset))
-                        client.message('Set %s for the next Round.' % _preset_list[_new_preset])
-                    except CommandFailedError, err:
-                        pass
-                else:
-                    client.message('Weapon Preset %s doesn\'t exists' % data[0])
-            elif data == 'show':
-                client.message('Available Presets: %s' % ', '.join(_preset_list))
-            else:
-                client.message('wrong parameter, try !help gunmaster')
-
 
 
 

@@ -1,20 +1,22 @@
 # -*- encoding: utf-8 -*-
 # http://www.voidspace.org.uk/python/mock/mock.html
 import logging
+import unittest
 from mockito import when, verify
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_cmd_setnextmap(Bf3TestCase):
+@unittest.skip("skipping until the BF4 parser as a solid list of maps and gamemodes")
+class Test_cmd_setnextmap(Bf4TestCase):
     def setUp(self):
         super(Test_cmd_setnextmap, self).setUp()
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[commands]
 setnextmap-snmap: 20
         """)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
 

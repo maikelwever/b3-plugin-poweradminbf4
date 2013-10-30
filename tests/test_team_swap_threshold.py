@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from mock import Mock, patch
-from tests import Bf3TestCase, logging_disabled
+from tests import Bf4TestCase, logging_disabled
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
+from poweradminbf4 import Poweradminbf4Plugin
 
 
-class Test_config(Bf3TestCase):
+class Test_config(Bf4TestCase):
     default_value = 3
     minimum_value = 2
 
@@ -15,14 +15,14 @@ class Test_config(Bf3TestCase):
 [preferences]
 team_swap_threshold: %s
                     """ % conf_value)
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(expected, self.p._team_swap_threshold)
 
     def test_default_value(self):
         self.conf = CfgConfigParser()
         self.conf.loadFromString("""[foo]""")
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.assertEqual(self.default_value, self.p._team_swap_threshold)
 
@@ -43,7 +43,7 @@ team_swap_threshold: %s
 
 
 
-class Test_autoassign(Bf3TestCase):
+class Test_autoassign(Bf4TestCase):
 
     def setUp(self):
         super(Test_autoassign, self).setUp()
@@ -55,7 +55,7 @@ autoassign: On
 team_swap_threshold: 2
         """)
         with logging_disabled():
-            self.p = Poweradminbf3Plugin(self.console, self.conf)
+            self.p = Poweradminbf4Plugin(self.console, self.conf)
             self.p.onLoadConfig()
             self.p.onStartup()
         self.assertTrue(self.p._autoassign)
@@ -72,7 +72,7 @@ team_swap_threshold: 2
         self.write_mock = self.write_patcher.start()
 
     def tearDown(self):
-        Bf3TestCase.tearDown(self)
+        Bf4TestCase.tearDown(self)
         self.write_patcher.stop()
 
     def count_teams(self):

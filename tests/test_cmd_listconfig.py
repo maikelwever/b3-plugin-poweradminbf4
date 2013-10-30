@@ -2,11 +2,11 @@
 import os
 from mock import patch
 from b3.config import CfgConfigParser
-from poweradminbf3 import Poweradminbf3Plugin
-from tests import Bf3TestCase
+from poweradminbf4 import Poweradminbf4Plugin
+from tests import Bf4TestCase
 
 
-class Test_cmd_listconfig(Bf3TestCase):
+class Test_cmd_listconfig(Bf4TestCase):
 
     def setUp(self):
         super(Test_cmd_listconfig, self).setUp()
@@ -18,7 +18,7 @@ listconfig: 40
 config_path: %(script_dir)s
             """ % {'script_dir': os.path.abspath(
             os.path.join(os.path.dirname(__file__), '../extplugins/conf/serverconfigs'))})
-        self.p = Poweradminbf3Plugin(self.console, self.conf)
+        self.p = Poweradminbf4Plugin(self.console, self.conf)
         self.p.onLoadConfig()
         self.p.onStartup()
         self.admin.connects("admin")
