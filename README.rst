@@ -9,13 +9,6 @@ http://www.bigbrotherbot.net
    :target: http://travis-ci.org/maikelwever/b3-plugin-poweradminbf4
 
 
-Notice
-------
-
-**THIS IS CURRENTLY A WORK IN PROGRESS, I AM STILL PORTING THIS PLUGIN TO BF4.**
-
-
-
 Description
 -----------
 
@@ -25,7 +18,7 @@ This plugin brings Battlefield 4 specific features to Bigbrotherbot.
 Requirements
 ------------
 
-- requires B3 v1.10 or later
+- requires B3 v1.10 or later (note: this is currently a seperate branch in git)
 
 
 Installation
