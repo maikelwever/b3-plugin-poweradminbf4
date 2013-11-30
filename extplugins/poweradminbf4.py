@@ -39,7 +39,7 @@ import b3.events
 from b3.plugin import Plugin
 from b3.parsers.frostbite2.protocol import CommandFailedError
 from b3.parsers.frostbite2.util import MapListBlock, PlayerInfoBlock
-from b3.parsers.bf4 import GAME_MODES_NAMES
+from b3.parsers.bf4 import GAME_MODES_NAMES, MAP_NAME_BY_ID
 from b3.parsers.bf4 import __version__ as bf4_version
 from b3.update import B3version
 import b3.cron
@@ -1468,14 +1468,20 @@ class Poweradminbf4Plugin(Plugin, vip_commands_mixin):
             self.debug('Gametype Config: %s' %(self._next_gametype))
         else:
             #get next map and gametype
-            next_map_gametype = self.console.getNextMap()
-            p = next_map_gametype.split('(')
-            next_mapName = p[0].strip()
-            next_mapName = self.console.getHardName(next_mapName)
+            next_mapName = None
+            next_gameType = None
+            # getNextMap return a string like 'Paracel Storm (Team Deathmatch) 1 round'
+            _next_map_string = self.console.getNextMap()
 
-            game_modes_names_inverse = dict((GAME_MODES_NAMES[k], k) for k in GAME_MODES_NAMES)
-            next_gameType = p[1][:-1].strip()
-            next_gameType = game_modes_names_inverse[next_gameType]
+            try:
+                next_gameType = [k for k, v in GAME_MODES_NAMES.items() if v in _next_map_string][0].lower()
+            except IndexError:
+                self.debug('Cannot find a valid gamemode for the next map.')
+
+            try:
+                next_mapName = [k for k, v in MAP_NAME_BY_ID.items() if v in _next_map_string][0]
+            except IndexError:
+                self.debug('Cannot find a valid name for the next map.')
 
             self._next_typeandmap = 'b3_%s_%s' % (next_gameType.lower(), next_mapName.lower())
             self.debug('Type and Map Config for Next Map: %s' %(self._next_typeandmap))
