@@ -1311,7 +1311,14 @@ class Poweradminbf4Plugin(Plugin, vip_commands_mixin):
                     self._adminPlugin.registerCommand(self, cmd, level, func, alias)
 
     def _movePlayer(self, client, teamId, squadId=0):
-        self.console.write(('admin.movePlayer', client.cid, teamId, squadId, 'true'))
+        try:
+            self.console.write(('admin.movePlayer', client.cid, teamId, squadId, 'true'))
+        except CommandFailedError, err:
+            if err.message[0] == "PlayerIsCommander":
+                self.debug('Move player failed. This player is a commander.')
+                pass
+            else:
+                self.debug('Move player failed. Error: %s' % err.message)
         client.setvar(self, 'movedByBot', True)
 
     def _get_server_config_directory(self, dir_name=''):
