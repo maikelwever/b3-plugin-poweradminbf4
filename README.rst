@@ -188,9 +188,7 @@ Credits
 
 This plugin is a fork of the `poweradmin for BF3 plugin <https://github.com/thomasleveil/b3-plugin-poweradminbf3>`_. Credits go out to the developers of that.
 
-Contributors to this plugin:
-  - maikelwever
-  - courgette
+Contributors to this plugin can be found at: https://github.com/maikelwever/b3-plugin-poweradminbf4/graphs/contributors
 
 
 Contrib
