@@ -81,8 +81,8 @@ changeteam: mod
         # THEN
         self.assertEqual(2, self.superadmin.teamId)
         self.assertEqual(1, self.superadmin.squad)
-        self.assertEqual(["You do not have sufficient access to use !changeteam"], self.joe.message_history)
-
+        #self.assertEqual(["You do not have sufficient access to use !changeteam"], self.joe.message_history)
+        self.assertEqual([u'You need to be in group Moderator to use !changeteam'], self.joe.message_history)
 
     def assert_moved_from_team_1_to_2_to_1(self):
         self.console.getServerInfo()
