@@ -458,7 +458,7 @@ class Poweradminbf4Plugin(Plugin, vip_commands_mixin):
 
     def cmd_serverreboot(self, data, client, cmd=None):
         """\
-        Restart the Battlefield 3 Gameserver.
+        Restart the Battlefield 4 Gameserver.
         """
         # @todo: add dialog - Demand that the user wants to restart really
         try:
@@ -523,8 +523,10 @@ class Poweradminbf4Plugin(Plugin, vip_commands_mixin):
                     self.console.write(('admin.killPlayer', sclient.cid))
                     if reason:
                         sclient.message("Kill reason: %s" % reason)
+                        client.message("%s was killed for reason: %s" % (sclient.name, reason))
                     else:
                         sclient.message("Killed by admin")
+                        client.message("%s was killed." % sclient.name)
                 except CommandFailedError, err:
                     if err.message[0] == "SoldierNotAlive":
                         client.message("%s is already dead" % sclient.name)

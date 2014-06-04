@@ -50,7 +50,7 @@ kill: 0
         self.superadmin.says('!kill joe')
         # THEN
         verify(self.console).write(('admin.killPlayer', 'Joe'))
-        self.assertEqual([], self.superadmin.message_history)
+        self.assertEqual(['Joe was killed.'], self.superadmin.message_history)
         self.assertEqual(['Killed by admin'], self.joe.message_history)
 
     def test_joe_kills_superadmin(self):
@@ -72,5 +72,5 @@ kill: 0
         self.superadmin.says('!kill simon')
         verify(self.console).write(('admin.killPlayer', self.simon.name))
         # THEN
-        self.assertEqual([], self.superadmin.message_history)
+        self.assertEqual(['Simon was killed.'], self.superadmin.message_history)
         self.assertEqual(['Killed by admin'], self.simon.message_history)
