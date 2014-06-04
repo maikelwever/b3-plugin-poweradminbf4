@@ -458,7 +458,7 @@ class Poweradminbf4Plugin(Plugin, vip_commands_mixin):
 
     def cmd_serverreboot(self, data, client, cmd=None):
         """\
-        Restart the Battlefield 3 Gameserver.
+        Restart the Battlefield 4 Gameserver.
         """
         # @todo: add dialog - Demand that the user wants to restart really
         try:
